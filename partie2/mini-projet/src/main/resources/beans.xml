@@ -1,0 +1,19 @@
+
+
+<beans>
+<!-- Bean de ServiceA -->
+<bean id="serviceA" class="net.mini_projet.model.ServiceA"/>
+
+<!-- Bean de ServiceB avec injection par Setter -->
+<bean id="serviceB" class="net.mini_projet.model.ServiceB">
+    <property name="serviceA" ref="serviceA"/>
+</bean>
+
+<!-- Bean de ServiceC avec injection par constructeur -->
+<bean id="serviceC" class="net.mini_projet.model.ServiceC">
+    <property name="serviceA" ref="serviceA"/>
+</bean>
+</beans>
+
+
+

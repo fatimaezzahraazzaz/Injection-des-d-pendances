@@ -1,0 +1,2 @@
+net.work1.dao.DaoImpl
+net.work1.metier.IMetierImpl
