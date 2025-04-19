@@ -1,4 +1,101 @@
-# Mini Projet - Framework d'Injection des Dépendances
+# Partie 1 - Injection de Dépendances avec Couplage Faible
+
+##  Introduction
+
+Ce projet a pour but d'illustrer le principe du **couplage faible** en Java à travers l'utilisation d'interfaces et d'implémentations indépendantes, tout en mettant en œuvre différentes techniques d'injection de dépendances.
+
+Les méthodes d'injection couvertes sont :
+
+- Injection par instanciation **statique**
+- Injection par instanciation **dynamique (réflexion)**
+- Injection via **Spring Framework** :
+  - Version **XML**
+  - Version **annotations**
+
+---
+
+##  Technologies utilisées 
+
+- Java
+- Spring Framework
+
+---
+
+##  Structure du projet 
+![image](https://github.com/user-attachments/assets/1c2ae942-e9ef-4ce2-a306-2096a6dd828e)
+*Capture d'architecture du projet et de l'injection de dépendances.*
+
+## Détail des composants 
+
+###  DAO
+
+- **`IDao.java`**  
+  Interface définissant la méthode `getData()`.
+
+- **`DaoImpl.java`**  
+  Implémentation simple retournant une valeur fixe.
+  
+  ![image](https://github.com/user-attachments/assets/b6faf44a-77c8-4e55-81f9-c94e642397c9)
+
+
+- **`DaoImplV2.java`**  
+  Deuxième implémentation pour illustrer le remplacement de dépendance.
+  ![image](https://github.com/user-attachments/assets/85b45ff8-d8d1-4f09-b514-eb971692469a)
+
+
+---
+
+### Métier
+
+- **`IMetier.java`**  
+  Interface métier avec la méthode `calcul()`.
+
+- **`IMetierImpl.java`**  
+  Implémentation de `IMetier` utilisant un objet `IDao` injecté.
+  ![image](https://github.com/user-attachments/assets/ceeab0ba-bf57-4945-921e-c016ac5688f2)
+
+
+---
+
+###  Présentation
+
+- **`Pres1.java`**  
+  Injection des dépendances **par instanciation statique** (manuel, couplage fort).
+
+  ![image](https://github.com/user-attachments/assets/69f13b27-9d56-4e93-b6cc-d3348d7c1cfe)
+
+
+- **`Pres2.java`**  
+  Injection **par instanciation dynamique** (réflexion avec `Class.forName`, couplage faible).
+  ![image](https://github.com/user-attachments/assets/d259223c-6f49-4ec3-8821-a31fdd1aede5)
+   **Injection par constructeur**
+  ![image](https://github.com/user-attachments/assets/44a094fc-5e10-45a9-a99b-2da77e0e3e8c)
+  **Injection par setter**
+
+- **`PresSpringXML.java`**  
+  Utilisation de **Spring avec configuration XML** (`config.xml`).
+  ![image](https://github.com/user-attachments/assets/8c2d4d53-76b8-4448-9f22-88bcc1fa9281)
+
+
+- **`presSpringAnnotation.java`**  
+  Utilisation de **Spring avec annotations** (`@Component`, `@Autowired`).
+  ![image](https://github.com/user-attachments/assets/caa45da6-46ac-453e-b8d6-8a7b2ef2aaf5)
+
+---
+
+###  Configuration
+
+- **`config.xml`**  
+  Définition des beans pour Spring (IoC via XML).
+  ![image](https://github.com/user-attachments/assets/4c604913-aa43-4d54-8320-84af55680d24)
+
+---
+## Conclusion
+L’utilisation de la réflexion en Java permet d’instancier dynamiquement des classes et d’injecter leurs dépendances sans connaître les implémentations exactes à l’avance. Cela permet de créer des architectures flexibles et faiblement couplées, facilitant la réutilisabilité, l’évolution et les tests unitaires.
+👉 Cette approche est la base du fonctionnement de frameworks comme Spring, qui automatisent cette injection via des fichiers XML ou des annotations.
+
+ ---
+# Partie 2 - Mini Projet :Framework d'Injection des Dépendances
 
 ## Introduction
 
@@ -6,7 +103,7 @@ Ce projet implémente un **framework d'injection de dépendances** en Java, insp
 
 ![image](https://github.com/user-attachments/assets/958bc122-9366-4d00-8ac0-4ba377cb289d)
 
-*Capture d'architecture du projet et de l'injection de dépendances.*
+*Capture d'architecture du projet Framework de l'injection de dépendances.*
 
 ## Technologies utilisées
 
@@ -70,6 +167,15 @@ Ce fichier de test vérifie que l’injection par annotations fonctionne en cré
 ### `MainXml.java` (XML)
 Ce fichier de test vérifie que l’injection via fichier XML fonctionne correctement, en utilisant le fichier `beans.xml` pour injecter les dépendances dans les classes.
 
-![image](https://github.com/user-attachments/assets/2ee74874-cf78-47c8-a844-605d6b1a55df)
+---
+
+## Conclusion
+
+Ce mini-projet a permis de comprendre et d'implémenter un mécanisme simple d'injection de dépendances en Java. Ce framework peut être étendu pour inclure davantage de fonctionnalités comme la gestion de la portée des beans (singleton, prototype) ou la configuration dynamique des beans.
+
+Améliorations possibles :
+
+Ajouter la gestion des scopes des beans (singleton, prototype).
+
+Implémenter l’injection de dépendances par interface.
  
-*Exécution de l'injection de dépendances via XML dans le fichier `MainXml.java`.*
